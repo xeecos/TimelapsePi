@@ -11,7 +11,7 @@ function Camera(){
             return new Promise((resolve=>{
                 require('child_process').exec("ls /dev/video*",function(err, stdout, stderr){
                     if(stdout&&stdout.indexOf("/dev/video")>-1){
-                        const cam = new v4l2camera.Camera(stdout.substr(0,10));
+                        const cam = new v4l2camera.Camera(stdout.split("\n")[0]);
                         if (cam.configGet().formatName !== "MJPG") {
                             resolve();
                             return;
