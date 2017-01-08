@@ -11,7 +11,11 @@ function Camera(){
             return new Promise((resolve)=>{
                 childProcess.exec("ls /dev/video*",function(err, stdout, stderr){
                     if(stdout&&stdout.indexOf("/dev/video")>-1){
-                        childProcess.exec("v4l2-ctl -d"+stdout.split("\n")[0]+" -c gain="+gain+",exposure_absolute="+exposure,function(err, stdout, stderr){
+                        var cmd = "v4l2-ctl -d"+stdout.split("\n")[0]+" -c gain="+gain+",exposure_absolute="+exposure;
+                        console.log(cmd);
+                        childProcess.exec(cmd,function(err, stdout, stderr){
+                            console.log(err);
+                            console.log(stdout);
                             resolve();    
                         });
                     }else{
