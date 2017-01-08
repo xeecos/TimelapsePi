@@ -30,12 +30,16 @@ function Camera(){
                             resolve();
                             return;
                         }
-                        cam.start();
-                        cam.capture(function (success) {
-                            var frame = cam.frameRaw();
-                            cam.stop();
-                            resolve(Buffer(frame));
-                        });
+                        try{
+                            cam.start();
+                            cam.capture(function (success) {
+                                var frame = cam.frameRaw();
+                                cam.stop();
+                                resolve(Buffer(frame));
+                            });
+                        }catch(err){
+                            resolve();
+                        }
                     }else{
                         resolve();
                     }

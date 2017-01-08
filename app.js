@@ -17,7 +17,9 @@ app.get("/format",function(req,res){
 })
 app.get("/capture",function(req,res){
   Camera.sharedObject().capture().then(function(buffer){
-    require("fs").createWriteStream("./web/capture/result.jpg").end(buffer);
+    if(buffer){
+      require("fs").createWriteStream("./web/capture/result.jpg").end(buffer);
+    }
     res.send('ok');
   });
 })
