@@ -3,8 +3,18 @@
 <html lang="en-US">
 <head>
     <title>Timelapse</title>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
-    <img src="capture/result.jpg" width="640px"/>
+    <img id="capture" src="capture/result.jpg" width="640px"/>
+    <script>
+        function loop(){
+            jQuery.get("/capture",function(res){
+                $("#capture").src("/capture/result.jpg?time="+new Date());
+            })
+            setTimeout(loop,1000);
+        }
+        loop();
+    </script>
 </body>
 </html>
