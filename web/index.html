@@ -11,7 +11,7 @@
         function loop(){
             jQuery.get("/capture",function(res){
                 $("#capture").attr("src","/capture/result.jpg?time="+new Date());
-                setTimeout(loop,200);
+                loop();
             })
         }
         loop();
