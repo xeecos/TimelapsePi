@@ -8,7 +8,7 @@ function Camera(){
         instance = self;
         
         self.capture = function(){
-            new Promise((resolve=>{
+            return new Promise((resolve=>{
                 require('child_process').exec("ls /dev/video*",function(data){
                     if(data.indexOf("/dev/video")>-1){
                         const cam = new v4l2camera.Camera("/dev/video0");
