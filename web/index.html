@@ -10,9 +10,9 @@
     <script>
         function loop(){
             jQuery.get("/capture",function(res){
-                $("#capture").src("/capture/result.jpg?time="+new Date());
+                $("#capture").attr("src","/capture/result.jpg?time="+new Date());
+                setTimeout(loop,1000);
             })
-            setTimeout(loop,1000);
         }
         loop();
     </script>
