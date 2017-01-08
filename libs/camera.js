@@ -12,10 +12,7 @@ function Camera(){
                 childProcess.exec("ls /dev/video*",function(err, stdout, stderr){
                     if(stdout&&stdout.indexOf("/dev/video")>-1){
                         var cmd = "v4l2-ctl -d "+stdout.split("\n")[0]+" -c exposure_auto_priority=0,gain="+gain+",exposure_absolute="+exposure;
-                        console.log(cmd);
                         childProcess.exec(cmd,function(err, stdout, stderr){
-                            console.log(err);
-                            console.log(stdout);
                             resolve();    
                         });
                     }else{
