@@ -12,12 +12,12 @@ app.get("/format",function(req,res){
     res.send('ok');
   })
 })
+app.get("/capture",function(req,res){
+  Camera.sharedObject().capture().then(function(buffer){
+    require("fs").createWriteStream("./web/capture/result.jpg").end(buffer);
+    res.send('ok');
+  });
+})
 app.listen(8000, function () {
   console.log('app listening on port 8000!');
-});
-
-Camera.sharedObject().format(2000,50).then(function(){
-  return Camera.sharedObject().capture();
-}).then(function(buffer){
-  require("fs").createWriteStream("./web/capture/result.jpg").end(buffer);
 });
