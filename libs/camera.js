@@ -9,9 +9,9 @@ function Camera(){
         
         self.capture = function(){
             return new Promise((resolve=>{
-                require('child_process').exec("ls /dev/video*",function(data){
-                    if(data.indexOf("/dev/video")>-1){
-                        const cam = new v4l2camera.Camera("/dev/video0");
+                require('child_process').exec("ls /dev/video*",function(err, stdout, stderr){
+                    if(stdout&&stdout.indexOf("/dev/video")>-1){
+                        const cam = new v4l2camera.Camera(stdout.substr(0,10));
                         if (cam.configGet().formatName !== "MJPG") {
                             resolve();
                             return;
