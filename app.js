@@ -26,3 +26,6 @@ app.get("/capture",function(req,res){
 app.listen(8000, function () {
   console.log('app listening on port 8000!');
 });
+process.on('uncaughtException', (err) => {
+	console.log(err);
+});
