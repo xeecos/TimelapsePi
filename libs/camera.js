@@ -35,12 +35,12 @@ function Camera(){
                         }
                         try{
                             self.cam.start();
-                            self.isOpen=false;
+                            self.isOpen=true;
 			    console.log("starting")
 			    self.cam.capture(function (success) {
                                 var frame = self.cam.frameRaw();
                                 self.cam.stop();
-				self.isOpen = true;
+				self.isOpen = false;
 				console.log("success:",success)
                                 resolve(Buffer(frame));
                             });
